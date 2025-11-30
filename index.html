@@ -1,102 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casguard Immigration Quiz</title>
-  <style>
+<meta charset="UTF-8">
+<title>Casguard Knowledge Quiz</title>
+<style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f2f2f2;
     }
     .quiz-container {
-      background: #fff;
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 700px;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    h1 {
+        text-align: center;
     }
     .question {
-      margin-bottom: 20px;
+        margin-bottom: 20px;
+        padding: 10px;
+        background: #fafafa;
+        border-radius: 8px;
+        border: 1px solid #ddd;
     }
     button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
     }
-    .result {
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <div class="quiz-container">
-    <h1>Casguard Immigration Quiz</h1>
-    <form id="quizForm"></form>
-    <button onclick="submitQuiz()">Submit</button>
-    <div class="result" id="result"></div>
-  </div>
+<div class="quiz-container">
+    <h1>Casguard Quiz</h1>
 
-  <script>
-    const questions = [
-      { q: "When was Casguard colonised?", a: "1731", options: ["1682", "1731", "1810"] },
-      { q: "What government system does Casguard follow?", a: "Elective Monarchy", options: ["Direct Democracy", "Elective Monarchy", "Federal Republic"] },
-      { q: "What is the 1st law of order in Casguard?", a: "Everyone is equal", options: ["Respect the Monarch", "Everyone is equal", "Pay all dues"] },
-      { q: "What is the maximum term for someone to be the Monarch?", a: "No limit, step down at 75", options: ["8 years", "15 years", "No limit, step down at 75"] },
-      { q: "What is the main religion of Casguard?", a: "Griffinitian Christian", options: ["Standard Christian", "Griffinitian Christian", "High Church Anglican"] },
-      { q: "What is the meaning of the region 'Cas'?", a: "Sand-filled", options: ["Cliffside", "Harsh winds", "Sand-filled"] },
-      { q: "Why is English the main language of Casguard?", a: "Colonised by Great Britain", options: ["It evolved locally", "Colonised by Great Britain", "Chosen randomly"] },
-      { q: "How often do people vote for the legislature?", a: "Every 12 months", options: ["Every 5 years", "Every 2 years", "Every 12 months"] },
-      { q: "In Social Law, what is said about neighbours?", a: "Be on good terms", options: ["Ignore them", "Be on good terms", "Assist only when required"] },
-      { q: "True or False: Are children required to play a sport?", a: "True", options: ["True", "False"] },
-      { q: "Fill in the blank: Casguard is a place of ________.", a: "Freedom and independence", options: ["Hope and unity", "Freedom and independence", "Peace and harmony"] },
-      { q: "What is the initiation ritual to join the Church?", a: "Hanglide from a mountain", options: ["Swim the channel", "Hanglide from a mountain", "Walk a pilgrimage"] },
-      { q: "What is the capital city of Casguard?", a: "Crate", options: ["Winton", "Crate", "Arden"] },
-      { q: "What is the national animal?", a: "Falcon", options: ["Red Fox", "Falcon", "Mountain Hare"] },
-      { q: "What is the national currency made of?", a: "Gold", options: ["Wood", "Plastic", "Gold"] },
-      { q: "What is Casguard’s national colour?", a: "Green", options: ["Yellow", "Blue", "Green"] },
-      { q: "What body of water borders Casguard?", a: "The Black Sea", options: ["Indian Ocean", "The Black Sea", "Grey Channel"] },
-      { q: "What material are official buildings reinforced with?", a: "Gold lined steel", options: ["Concrete", "Wood", "Gold lined steel"] },
-      { q: "What is the tallest mountain?", a: "Mount Protor", options: ["Mount Cray", "Mount Protor", "Northspire"] },
-      { q: "Which city is known for its strong winds?", a: "Winson", options: ["Protor", "Ronin", "Winson"] },
-      { q: "What is Casguard’s emergency number?", a: "122", options: ["555", "122", "901"] },
-      { q: "What is the autumn harvest festival?", a: "Sandfall Festival", options: ["Moonbright", "Sandfall Festival", "Caslight Day"] }
-    ];
+    <form id="quizForm">
 
-    const quizForm = document.getElementById("quizForm");
+        <!-- 1 -->
+        <div class="question">
+            <p>1. When was Casguard colonised?</p>
+            <label><input type="radio" name="q1" value="A"> 1731</label><br>
+            <label><input type="radio" name="q1" value="B"> 1824</label><br>
+            <label><input type="radio" name="q1" value="C"> 1659</label><br>
+        </div>
 
-    questions.forEach((item, index) => {
-      let block = document.createElement("div");
-      block.className = "question";
-
-      block.innerHTML = `<p><strong>${index + 1}. ${item.q}</strong></p>`;
-
-      item.options.forEach(opt => {
-        block.innerHTML += `
-          <label>
-            <input type="radio" name="q${index}" value="${opt}"> ${opt}
-          </label><br>
-        `;
-      });
-
-      quizForm.appendChild(block);
-    });
-
-    function submitQuiz() {
-      let score = 0;
-
-      questions.forEach((item, index) => {
-        const answer = document.querySelector(`input[name='q${index}']:checked`);
-        if (answer && answer.value === item.a) score++;
-      });
-
-      document.getElementById("result").innerText = `You scored ${score} out of ${questions.length}.`;
-    }
-  </script>
-</body>
-</html>
+        <!-- 2 -->
+        <div class="question">
+            <p>2. What government system does Casguard follow?</p>
+            <label><input type="radio" name="q2" value="C"> Elective Monarchy</label><br>
+            <label><input type="radio" name="q2" value="A"> Parliamentary Republic</label><br>
+            <label><input type="radio" name="q2" value="B"> Federal Monarchy</label><br>
+        <
